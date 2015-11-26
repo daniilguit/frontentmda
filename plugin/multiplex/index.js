@@ -21,11 +21,11 @@ io.on( 'connection', function( socket ) {
 		if (createHash(data.secret) === data.socketId) {
 			data.secret = null;
 			socket.broadcast.emit(data.socketId, data);
-		};
+		}
 	});
 });
 
-[ 'css', 'js', 'plugin', 'lib' ].forEach(function(dir) {
+[ 'css', 'js', 'plugin', 'lib', 'img' ].forEach(function(dir) {
 	app.use('/' + dir, staticDir(opts.baseDir + dir));
 });
 

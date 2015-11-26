@@ -29,11 +29,18 @@
 		</script>
 
         <style>
+            h1 {
+                font-size: 2em !important;
+            }
             div.reveal {
                 font-size: 50px;
             }
             div.reveal h2 {
                 font-size: 1.2em;
+            }
+
+            li {
+                margin-top: 0.5em !important;
             }
         </style>
 	</head>
@@ -66,8 +73,8 @@ var notificationDetails =
                 <section>
                     <h2>Связывание рук</h2>
                     <ul>
-                        <li>Слабое: React</li>
-                        <li>Сильное: Ember</li>
+                        <li>Слабое: React<br>Полная свобода в шаблонах</li>
+                        <li>Сильное: Ember<br>Специально суженная Handlebars</li>
                     </ul>
                 </section>
 
@@ -172,6 +179,8 @@ logger.userLoggedIn(userId);
 
 		<script>
 
+            var SECRET = null; '14484812824925208997';
+
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
@@ -184,15 +193,15 @@ logger.userLoggedIn(userId);
 
 				multiplex: {
 					// Example values. To generate your own, see the socket.io server instructions.
-					secret: '14484812824925208997', // Obtained from the socket.io server. Gives this (the master) control of the presentation
+					secret: SECRET, // Obtained from the socket.io server. Gives this (the master) control of the presentation
 					id: 'fc4a9d98fbe28735', // Obtained from socket.io server
-					url: 'localhost:1948' // Location of socket.io server
+					url: 'qbaka.com:1948' // Location of socket.io server
 				},
 
 				// Optional reveal.js plugins
 				dependencies: [
 					{ src: 'lib/js/socket.io.js'},
-					{ src: 'plugin/multiplex/master.js'},
+					{ src: SECRET ? 'plugin/multiplex/master.js' : 'plugin/multiplex/client.js'},
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
