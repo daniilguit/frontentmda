@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>MDA for Frontend</title>
+
+		<meta name="author" content="Daniil Gitelson">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+        <style>
+            div.reveal {
+                font-size: 50px;
+            }
+            div.reveal h2 {
+                font-size: 1.2em;
+            }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>MDA for Frontend</h1>
+					<p>
+						<a href="mailto:daniil.guit@gmail.com">Даниил Гительсон</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Читабельность кода</h2>
+                    <ul>
+                        <li><p>Документация</p>
+                    <pre><code class="hljs" data-trim>
+// The order is important:
+//    v3 followed by v1
+var notificationDetails =
+    ['FILTERRING_V2', 'FILTERING_V1']
+                    </code></pre></li>
+                        <li><p>Повышение уровня абстракции</p></li>
+                    </ul>
+				</section>
+                <section>
+                    <h2>Связывание рук</h2>
+                    <ul>
+                        <li>Слабое: React</li>
+                        <li>Сильное: Ember</li>
+                    </ul>
+                </section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<h2>Декларотивный подход</h2>
+                    <ul>
+                        <li>Помогает связывать руки</li>
+                        <li>Требует формализации словаря</li>
+                    </ul>
+				</section>
+
+				<section>
+                    <section>
+                        <h2>Пример: логирование</h2>
+                        <p>
+                            Было
+                        <pre><code class="hljs" data-trim>
+logger.event({name:'user_logged_in',uid:uid});
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Пример: логирование</h2>
+                        <p>
+                            Стало
+                        <pre><code class="hljs" data-trim>
+abstract class EventsLogger {
+    void userLoggedIn(String name);
+}
+
+var logger = generateLoggerImpl(EventsLogger);
+
+logger.userLoggedIn(userId);
+                        </code></pre>
+                    </section>
+				</section>
+
+				<section>
+					<h2>MDA</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>MDA</th>
+                            <th>ЯП</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Модель</td>
+                            <td>Объект</td>
+                        </tr>
+                        <tr>
+                            <td>Язык/Метамодель</td>
+                            <td>класс/прототип</td>
+                        </tr>
+                        <tr>
+                            <td>Метаязык/Метаметамодель </td>
+                            <td>N/A</td>
+                        </tr>
+                        </tbody>
+                    </table>
+				</section>
+				<section>
+					<h2>Метаметаметаметамодель</h2>
+                    <img style="width: 80%" src="img/We_need_to_go_deeper.jpg">
+				</section>
+
+                <section>
+                    <h2>Пример: Формы</h2>
+                    <ul>
+                        <li>Помогает связывать руки</li>
+                        <li>Требует формализации словаря</li>
+                    </ul>
+
+                </section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				multiplex: {
+					// Example values. To generate your own, see the socket.io server instructions.
+					secret: '14484812824925208997', // Obtained from the socket.io server. Gives this (the master) control of the presentation
+					id: 'fc4a9d98fbe28735', // Obtained from socket.io server
+					url: 'localhost:1948' // Location of socket.io server
+				},
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/socket.io.js'},
+					{ src: 'plugin/multiplex/master.js'},
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
