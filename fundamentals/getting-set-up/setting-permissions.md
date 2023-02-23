@@ -18,11 +18,9 @@ B
 {% endtab %}
 {% endtabs %}
 
-
-
-| Role                                     | Capabilities                            |
-| ---------------------------------------- | --------------------------------------- |
-| Administrator                            | Has all admin privileges                |
-| Editor                                   | Can edit posts                          |
-| Viewer                                   | Can only view posts                     |
-| <mark style="color:purple;">Guest</mark> | Can only view posts they are inivted to |
+| Role          | Capabilities                            |
+| ------------- | --------------------------------------- |
+| Administrator | Has all admin privileges                |
+| Editor        | Can edit posts                          |
+| Viewer        | Can only view posts                     |
+| Guest         | Can only view posts they are inivted to |
