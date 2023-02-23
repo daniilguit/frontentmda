@@ -8,6 +8,16 @@
 
 There are 4 types of permission levels in the product.
 
+{% tabs %}
+{% tab title="First Tab" %}
+A
+{% endtab %}
+
+{% tab title="Second Tab" %}
+B
+{% endtab %}
+{% endtabs %}
+
 | Role          | Capabilities                            |
 | ------------- | --------------------------------------- |
 | Administrator | Has all admin privileges                |
